@@ -1,0 +1,42 @@
+<%# <div>
+  <h1 class="font-bold text-4xl">Reservations#new</h1>
+  <p>Find me in app/views/reservations/new.html.erb</p>
+</div> %>
+
+
+<section class="bg-[#fdfaf6] py-20 px-6 md:px-16 min-h-screen">
+  <h2 class="text-4xl font-serif mb-8 text-center">Réserver une table</h2>
+
+  <%= form_with model: @reservation, local: true, class: "max-w-2xl mx-auto bg-white p-8 rounded shadow-md space-y-6" do |f| %>
+    <div>
+      <%= f.label :name, "Nom", class: "block mb-2 font-semibold" %>
+      <%= f.text_field :name, class: "w-full border px-4 py-2 rounded" %>
+    </div>
+
+    <div>
+      <%= f.label :email, "Email", class: "block mb-2 font-semibold" %>
+      <%= f.email_field :email, class: "w-full border px-4 py-2 rounded" %>
+    </div>
+
+    <div>
+      <%= f.label :date, "Date", class: "block mb-2 font-semibold" %>
+      <%= f.date_field :date, class: "w-full border px-4 py-2 rounded" %>
+    </div>
+
+    <div>
+      <%= f.label :time, "Heure", class: "block mb-2 font-semibold" %>
+      <%= f.time_field :time, class: "w-full border px-4 py-2 rounded" %>
+    </div>
+
+    <div>
+      <%= f.label :guests, "Nombre de personnes", class: "block mb-2 font-semibold" %>
+      <%= f.number_field :guests, min: 1, class: "w-full border px-4 py-2 rounded" %>
+    </div>
+
+    <%= f.submit "Réserver", class: "w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition" %>
+  <% end %>
+</section>
+
+
+
+

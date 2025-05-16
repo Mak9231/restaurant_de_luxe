@@ -1,0 +1,27 @@
+<h1 class="text-3xl font-bold mb-6">Réservations</h1>
+
+<table class="w-full border border-gray-300 text-left">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="p-2 border">Nom</th>
+      <th class="p-2 border">Email</th>
+      <th class="p-2 border">Date</th>
+      <th class="p-2 border">Heure</th>
+      <th class="p-2 border">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td class="p-2 border"><%= reservation.name %></td>
+        <td class="p-2 border"><%= reservation.email %></td>
+        <td class="p-2 border"><%= reservation.date %></td>
+        <td class="p-2 border"><%= reservation.time %></td>
+        <td class="p-2 border">
+          <%= link_to "Voir", admin_reservation_path(reservation), class: "text-blue-500 hover:underline" %> |
+          <%= link_to "Supprimer", admin_reservation_path(reservation), method: :delete, data: { confirm: "Supprimer cette réservation ?" }, class: "text-red-500 hover:underline" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

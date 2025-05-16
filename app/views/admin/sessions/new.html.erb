@@ -1,0 +1,18 @@
+
+
+
+<h2 class="text-2xl font-bold mb-6">Connexion Administrateur</h2>
+
+<%= form_with url: admin_login_path, method: :post, class: "space-y-4" do |f| %>
+  <div>
+    <%= f.label :email, class: "block mb-1 font-semibold" %>
+    <%= f.email_field :email, required: true, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <div>
+    <%= f.label :password, class: "block mb-1 font-semibold" %>
+    <%= f.password_field :password, required: true, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <%= f.submit "Se connecter", class: "bg-black text-white px-4 py-2 rounded hover:bg-gray-800" %>
+<% end %>

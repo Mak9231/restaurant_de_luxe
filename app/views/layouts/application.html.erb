@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Restaurant De Luxe" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Restaurant de Luxe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-[#fdfaf6] text-[#2b2b2b]">
+    <header class="bg-white border-b border-gray-200 px-4 md:px-12 py-6 flex items-center justify-between fixed top-0 w-full z-50">
+      <h1 class="text-2xl font-serif font-bold">Restaurant de Luxe</h1>
+
+      <!-- Menu Burger Mobile -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-3xl focus:outline-none">&#9776;</button>
+      </div>
+
+      <!-- Liens de navigation -->
+      <nav id="menu" class="hidden md:flex space-x-6 text-lg font-light">
+        <%= link_to "Accueil", root_path, class: "hover:underline" %>
+        <%= link_to "Menu", "#", class: "hover:underline" %>
+        <%= link_to "Réservations", reservations_path, class: "hover:underline" %>
+        <%= link_to "Contact", "#", class: "hover:underline" %>
+        <%= link_to "Admin Réservations", admin_reservations_path, class: "hover:underline" %>
+      </nav>
+    </header>
+
+    <main class="pt-24">
       <%= yield %>
     </main>
+
+    <footer class="text-center text-sm py-6 border-t mt-8">
+      © <%= Time.current.year %> Restaurant de Luxe. Tous droits réservés.
+      <%= link_to "Espace admin", admin_login_path, class: "text-sm underline text-gray-600 hover:text-black ml-2" %>
+    </footer>
+
+    <!-- Script menu burger -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+          menu.classList.toggle("flex");
+          menu.classList.toggle("flex-col");
+          menu.classList.toggle("absolute");
+          menu.classList.toggle("bg-white");
+          menu.classList.toggle("right-4");
+          menu.classList.toggle("top-20");
+          menu.classList.toggle("p-4");
+          menu.classList.toggle("space-y-4");
+          menu.classList.toggle("rounded-md");
+          menu.classList.toggle("shadow-lg");
+        });
+      });
+    </script>
   </body>
 </html>
+
